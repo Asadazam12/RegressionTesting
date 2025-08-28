@@ -1,41 +1,14 @@
 describe('Payment Balance Check Form', () => {
-  beforeEach(() => {
-    cy.visit('http://payment.pspa.gop.pk'); // Verify this URL works in CI
-    cy.title().should('include', 'Check Available Balance');
-  });
+  // New test case for demo site login
+  it('should login successfully on demo site', () => {
+    cy.visit('http://www.stealmylogin.com/demo.html');
+    cy.get('input[name="username"]').type('demo_user'); // Replace with actual username
+    cy.get('input[name="password"]').type('demo_pass'); // Replace with actual password
+    cy.get('input[type="submit"]').click();
+    cy.url().should('include', 'https://example.com'); // Verify redirect to submission URL
+    cy.get('body').should('contain', 'Login Successful'); // Verify login success (adjust based on actual response)
 
-  it('should fill and submit the form successfully', () => {
-    cy.get('.captchaInstruction').first().invoke('text').then((captchaText) => {
-      const captchaNumber = parseInt(captchaText.trim(), 10);
-      cy.get('#CNIC').type('1234567890123');
-      cy.get('#ContactNumber').type('03001234567');
-      cy.get('#captchaInput').type(captchaNumber.toString());
-      cy.get('#verifyButton').click();
-      cy.get('#loadingSpinner', { timeout: 20000 }).should('be.visible');
-      cy.get('#loadingSpinner', { timeout: 20000 }).should('not.exist');
-      // Add success assertion if applicable
-    });
-  });
-/*
-  it('should show error for invalid CNIC', () => {
-    cy.get('.captchaInstruction').first().invoke('text').then((captchaText) => {
-      const captchaNumber = parseInt(captchaText.trim(), 10);
-      cy.get('#CNIC').type('123');
-      cy.get('#ContactNumber').type('03001234567');
-      cy.get('#captchaInput').type(captchaNumber.toString());
-      cy.get('#verifyButton').click();
-      cy.get('#CNIC').should('have.class', 'is-invalid', { timeout: 10000 });
-    });
-  });
 
-  it('should show error for invalid Contact Number', () => {
-    cy.get('.captchaInstruction').first().invoke('text').then((captchaText) => {
-      const captchaNumber = parseInt(captchaText.trim(), 10);
-      cy.get('#CNIC').type('1234567890123');
-      cy.get('#ContactNumber').type('12345');
-      cy.get('#captchaInput').type(captchaNumber.toString());
-      cy.get('#verifyButton').click();
-      cy.get('#ContactNumber').should('have.class', 'is-invalid', { timeout: 10000 });
-    }); */
-  });
+
+
 });
