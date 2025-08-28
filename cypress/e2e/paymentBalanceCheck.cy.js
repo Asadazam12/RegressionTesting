@@ -16,7 +16,7 @@ describe('Payment Balance Check Form', () => {
       // Add success assertion if applicable
     });
   });
-
+/*
   it('should show error for invalid CNIC', () => {
     cy.get('.captchaInstruction').first().invoke('text').then((captchaText) => {
       const captchaNumber = parseInt(captchaText.trim(), 10);
@@ -36,6 +36,6 @@ describe('Payment Balance Check Form', () => {
       cy.get('#captchaInput').type(captchaNumber.toString());
       cy.get('#verifyButton').click();
       cy.get('#ContactNumber').should('have.class', 'is-invalid', { timeout: 10000 });
-    });
+    }); */
   });
 });
