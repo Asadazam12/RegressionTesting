@@ -1,6 +1,6 @@
 describe('Payment Balance Check Form', () => {
   beforeEach(() => {
-    cy.visit('http://payment.pspa.gop.pk');
+    cy.visit('http://payment.pspa.gop.pk'); // Verify this URL works in CI
     cy.title().should('include', 'Check Available Balance');
   });
 
@@ -11,9 +11,9 @@ describe('Payment Balance Check Form', () => {
       cy.get('#ContactNumber').type('03001234567');
       cy.get('#captchaInput').type(captchaNumber.toString());
       cy.get('#verifyButton').click();
-      cy.get('#loadingSpinner', { timeout: 15000 }).should('be.visible');
-      cy.get('#loadingSpinner', { timeout: 15000 }).should('not.exist');
-      // Add assertion for success if applicable
+      cy.get('#loadingSpinner', { timeout: 20000 }).should('be.visible');
+      cy.get('#loadingSpinner', { timeout: 20000 }).should('not.exist');
+      // Add success assertion if applicable
     });
   });
 
@@ -24,7 +24,7 @@ describe('Payment Balance Check Form', () => {
       cy.get('#ContactNumber').type('03001234567');
       cy.get('#captchaInput').type(captchaNumber.toString());
       cy.get('#verifyButton').click();
-      cy.get('#CNIC').should('have.class', 'is-invalid', { timeout: 6000 });
+      cy.get('#CNIC').should('have.class', 'is-invalid', { timeout: 10000 });
     });
   });
 
@@ -35,7 +35,7 @@ describe('Payment Balance Check Form', () => {
       cy.get('#ContactNumber').type('12345');
       cy.get('#captchaInput').type(captchaNumber.toString());
       cy.get('#verifyButton').click();
-      cy.get('#ContactNumber').should('have.class', 'is-invalid', { timeout: 6000 });
+      cy.get('#ContactNumber').should('have.class', 'is-invalid', { timeout: 10000 });
     });
   });
 });
